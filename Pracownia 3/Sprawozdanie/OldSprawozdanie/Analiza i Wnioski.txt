@@ -1,0 +1,14 @@
+    \indent Muszê przyznaæ ¿e to laboratorium da³o sprawi³o mi wiele radoœci. Upewni³em siê, ¿e matematyka to narzêdzie
+    elementarne ale niesamowicie silne. Z jej pomoc¹ mogê na przyk³ad szybko zawiesiæ swój komputer na d³ugie godziny -
+    wystarczy ¿e w pêtli generuj¹cej kolejne przybli¿enia pomylê siê przy warunku stopu pêtli. Kilka razy te¿ uda³o mi
+    siê otrzymaæ komunikat o przepe³nieniu siê sterty - wówczas powsta³ pomys³ tablic hashuj¹cych, które zapamiêtaj¹
+    raz obliczone wyniki. Metody iteracyjne to moim zdanie kosztowne narzêdzie - widaæ ¿e nie zawsze s¹ one zbie¿ne -
+    trzeba zatem wiedzieæ jak i kiedy mo¿na ich u¿ywaæ. Miêdzy innymi nale¿y pamiêtaæ jak istotny jest wybór pierwszego
+    przybli¿enia - tutaj dobrym pomys³em mo¿e okazaæ siê u¿ycie innych, prostzych metod - ale zawsze zbie¿nych do
+    momentu - w którym bêdziemy mieli pewnoœæ ¿e przejœcie na metodê silniej zbie¿n¹ nie poskutkuje efektem odwrotnym i
+    rozbiegniêciem siê kolejnych przybli¿eñ\\
+    \indent Zastanawiaj¹ce jest te¿, ¿e aby otrzymaæ kilkaset wyników z dok³adnoœci¹ oko³o 40 miejsc po przecinku
+    nale¿y tak wielk¹ wagê przy³o¿yæ do zagadnienia optymalizacji - czas obliczania wartoœci eskponenty dla jednego
+    argumenty siêga³ nieraz kilku sekund.\\
+    \indent Cieszy te¿ fakt, ¿e powoli rozbudowuje siê mój projekt z u¿yciem numerycznych funkcji - mam nadziejê jeszcze kiedyœ
+    z tego skorzystaæ.

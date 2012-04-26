@@ -1,0 +1,20 @@
+\indent Niech $\alpha$ bedzie rozwi¹zaniem równania nieliniowego $f(x) = 0$. Za³ózmy, ze dysponujemy metodami
+    iteracyjnymi postaci: \\[6pt]
+    \begin{displaymath}
+        x_{n+1} := F(x_{n});\ \ \ \ \ x_{n+1} := G(x_{n}); \label{eq:proste}
+    \end{displaymath} \\[6pt]
+    gdzie $F$ i $G$ sa funkcjami spe³niajacymi warunek
+    $F(\alpha) = G(\alpha) = \alpha$ (np. w wypadku metody Newtona mamy $F(x) = x - f(x)/f^{'}(x))$. Za³ózmy, ze metody te
+    sa rzedu $p$ i $q$, odpowiednio. Mo¿na wykazaæ, ¿e metody postaci \\[6pt]
+    \begin{displaymath}
+        x_{n+1} := F(G(x_{n}));\ \ \ \ \ x_{n+1} := G(F(x_{n})); \label{eq:zlozone}
+    \end{displaymath} \\[6pt]
+    s¹ rzêdu $p\cdot q$.
+    Wykorzystaj powy¿sz¹ obserwacjê do zaproponowania metod iteracyjnych wysokiego rzêdu rozwi¹zywania
+    równañ nieliniowych. PrzeprowadŸ odpowiednie eksperymente numeryczne i wyci¹gnij wnioski.
+
+    \subsection{Wstêpny opis problemu}
+        \indent Na pocz¹tku w zadaniu postaram siê pokazaæ, ¿e mamy gdy mamy do czynienia z jednopunktowymi  funkcjami
+        iteracyjnymi to ich rz¹d wyra¿a siê liczb¹ naturaln¹. Poka¿ê te¿ jeden przyk³ad, ku satysfakcji dowodu.
+        Nastêpnie na kilku przyk³adach postaram siê ju¿ eksperymentalnie - przeanalizowaæ zachowanie z³o¿enia -
+        pod wzglêdem zbie¿noœci oraz rzêdu zbie¿noœci.

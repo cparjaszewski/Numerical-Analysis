@@ -1,0 +1,7 @@
+Trzeba siê dowiedziec wiêcej na temat kwadratury interpolacyjnej - o co chodzi - jak jest sformu³owany problem.
+
+Trzeba siê zastanowiæ - czy wielomian jest optymalny?, prawie optymalny?
+
+Trzeba pomyœleæ jakie funkcje jeszcze.
+
+Trzeba zainstalowaæ TEX'a.

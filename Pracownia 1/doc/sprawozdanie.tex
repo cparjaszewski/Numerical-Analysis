@@ -1,0 +1,71 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[MeX]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bbm}
+\usepackage{amsthm}
+\usepackage{graphicx}
+
+% Zdefiniowanie autora i tytu³u:
+\author{Krzysztof Parjaszewski\\nr indeksu 209190}
+\title{Pracownia Analizy Numerycznej\\ lista nr 1, zadanie nr 5\\Numeryczne obliczanie wartoœci logarytmu naturalnego}
+\frenchspacing
+\begin{document}
+% Wstawienie autora i~tytu³u do sk³adu:
+\maketitle
+\newpage
+% Wstawienie spisu tresci:
+\tableofcontents
+\section{Treœæ zadania}
+\indent Napisz podprogram obliczajacy wartosc logarytmu naturalnego wg nastepujacej metody. Jesli $x = 1$, to sprawa
+jest oczywista. W przeciwnym wypadku nalezy wyznaczyc takie $n\in\mathcal{Z}$ i $r\in[\frac{1}{2} , 1)$, ¿e $x=
+r*2^{n}$. Nastêpnie po³ó¿:
+$u:=\frac{r-\frac{\sqrt{2}}{2}}{r+\frac{\sqrt{2}}{2}}$ i oblicz przybli¿on¹ wartoœæ $\ln{\frac{1+u}{1-u}}$ ze wzoru \\
+$\ln{\frac{1+u}{1-u}}\approx u*\frac{20790 - 21545.27u^{2} + 4223.9187u^{4}}{10395 - 14237.635u^{2} + 4778.8377u^{4} -
+230.41913u^{6}}$ Wreszcie przyjmij, ¿e $\ln{x} \approx (n - 1/2)*\ln{2} + \ln{\frac{1+u}{1-u}}$. Porównaj wartosci
+obliczone w ten sposób z podawanymi przez podprogram biblioteczny (funkcje standardowa) dla np. 100 wartosci argumentu.
+Jaki jest najwiekszy b³ad wzgledny? Skomentuj wyniki.
+\subsection{Wstêpny opis problemu} \indent Zadanie i jego realizacja
+okaza³y siê bardziej czasoch³onne i po prostu trudne ni¿ wskazywa³yby na to wstêpne przypuszczenia. Ma³a znajomoœæ
+$Javy$ i {\LaTeX}'a, a tak¿e powi¹zanych z nimi narzêdzi przyczyni³y siê do postawienia
+wielu pytañ i rozwi¹zania kilku dodatkowych problemów, to s³owem wstêpu. \\
+\indent Z numerycznego punktu widzenia, nale¿a³o obliczyæ b³¹d wzglêdny dla ró¿nych danych i skomentowaæ wyniki. Zatem
+zacznê od pocz¹tku.
+\section{Program i jego opis}
+\indent Obliczenia zosta³y przeprowadzone przy pomocy biblioteki $java.lang.Math$. Dok³adnoœæ typu double - podwójnej
+precyji do $1.11*10^{-16}$. U¿ywane JDK to wersja $1.5.0.12$ ród³a programu, który siê skompilowa³ oraz wyniki które
+da³
+bezpoœrednio on, lub np. Microft Word czy Excel s¹ do³¹czone w katalogu z tym sprawozdaniem.\\
+\indent Klasa runMe jest statyczna i s³u¿y tylko do utworzenia obiektu klasy Logharitmus a nastêpnie wywo³ania jego
+metody go(). Klasa Logharitmus w pêtli g³ównej dla $200$ powtórzeñ oblicza zgodnie lub z pewnymi modyfikacjami ( o
+których poni¿ej ) wartoœæ logarytmu na podstawie podatnego algorytmu. W ka¿dym powtórzeniu pêtli obliczana jest wartoœæ
+logarytmu dla liczby ca³kowitej jak i dla jej odwrotnoœci
+\\- np. dla pary $2$ oraz $\frac{1}{2}$ \footnote{Metodê private double
+CountMe(boolean lower\_than\_one) throws IOException i inne znajduj¹ siê w plikach Ÿród³owych *.java do³¹czonych do tego sprawozdania}.\\
+\indent Dane wynikowe s¹ zapisywane do pliku "result.fin" natomiast dane, których potrzebowa³em do wygenerowania
+wykresów do pliku "data.fin" - zaimplementowane s¹ dwa bufory strumieniowe nale¿¹ce do java.io - dobrze nadaj¹ siê do
+obs³ugi plików.
+\subsection{Odstêpstwo od algorytmu}
+\indent Okaza³o siê, ¿e dla liczb mniejszych od jednoœci algortym nie jest poprawny, tzn. w koñcowym wzorze\\
+$\ln{x} \approx (n - 1/2) + \ln{\frac{1+u}{1-u}}$\\
+nale¿y zmieniæ pierwszy sk³adnik na $(n + 1/2)*\ln{2}$ - chocia¿ narazie potrafiê to wykazaæ jedynie doœwiadczalnie.
+\newpage
+\section{Wyniki}
+\indent Tym, co otrzyma³em po zebraniu 200 danych s¹ dwa wykresy\footnote{dla liczb ca³kowitych i drugi dla liczb im
+odwrotnych} - rysunki umieszczam poni¿ej.\\
+\includegraphics[width=340px]{foto1.PNG}
+\\
+\includegraphics[width=340px]{foto2.PNG}\\
+\section{Próba analizy i wnioski} \indent Oba wykresy s¹ do siebie bardzo podobne - wartoœci b³êdu wzglêdnego
+cyklicznie objawiaj¹ siê na poziomie b³êdu reprezentacji\footnote{$10^{-16}$ dla arytmetyki double w java.lang.Math},
+to wzrastaj¹ do oko³o $0.8*10^{-13}$. Przeciêcie osi $OX'ów$ ma miejsce mniej wiêcej w punktach odpowiadaj¹cych
+kolejnym potêgom dwójki (dodatnim lub ujemnym) - chocia¿ w ich pobli¿u odchylenia co do modu³u s¹ lokalnie najwy¿sze.
+Oczywiœcie b³¹d na poziomie utraty $2$, $3$ cyfr znacz¹cych jest tutaj i tak bardzo dobrym przybli¿eniem - mo¿na wiêc
+powiedzieæ, ¿e algorytm jest numerycznie doœæ poprawny - przynajmniej dla przebadanych $400$ liczb. Przyczyn mo¿na
+doszukiwaæ siê miêdzy innymi w operacji podnoszenia do potêgi zmiennej u (w mianowniku wykonuje siê to 6-krotnie).
+Uwa¿am te¿, ¿e nie jest ³atwo wpaœæ na takie algorytm - odczytywanie i kodowanie poszczególnych jego podprogramów nie
+by³o trywialne. Mimo to mamy tutaj do czynienia z podstawowymi operacjami na sta³ych i zmiennych - takie jak dodawanie
+i mno¿enie. Wydaje siê zatem, ¿e powy¿szy algorytm nale¿y do doœæ szybkich - szacujê z³o¿onoœæ dla n danych wejœciowych
+na $O(n\ln{n})$.
+\end{document}

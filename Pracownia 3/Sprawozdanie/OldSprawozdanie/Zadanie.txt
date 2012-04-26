@@ -1,0 +1,149 @@
+\indent Stosowane przeze mnie metody to
+    \begin{itemize}
+     \item Metoda Newtona: $F(x) = x - f(x)/f^{'}(x)$,
+     \item Metoda Olver'a: $F(x) = x - \frac{f(x)}{f^{'}(x)}/ - \frac{ 1 f^{''}(x)}{2 f^{'}(x)} [f(x)/f^{'}(x)]^2$,
+     \item Metoda Hardley'a: $F(x) = x - 1 / [ \frac{f^{'}(x)}{f(x)}  - \frac{f^{''}(x)}{f^{'}(x)}]$,
+     \item Metoda Nowa (nie znalaz³em jej nazwy - nazywa j¹ now¹): $ F(x) = \frac{f(x)}{\sqrt{[f^{'}(x)]^2 - f(x)f^{''}(x)}}$,
+     \item Metoda siecznych  \emph{(oczywiœcie nie jest to metoda jednokrokowa, ale wzi¹³em j¹ dla porównania).}
+    \end{itemize}
+    \indent Wyniki jak i badania s¹ podzielone na dwa etapy. W pierwszym prowadzi³em obliczenia na typie double -
+    dok³adnoœæ do 16 cyfry po przecinku. Na kolejnych obrazkach zamieszczam wykresy zbie¿noœci dla dwóch równañ
+    nieliniowych. Pierwsze z nich to:
+    \newpage
+    \subsection{Serie z mniejsz¹ dok³adnoœci¹ (16 cyfr znacz¹cych)}
+        \subsubsection{Równanie 1}
+            \begin{equation}
+                \exp(x) - \sin(x), \label{eq1}
+            \end{equation} \\[12pt]
+
+            \includegraphics[height=240px]{../Obrazki/eq1.jpg}
+
+
+            \indent Obliczenia robione by³y na przedziale $(-1000,1000)$ z rozszerzeniem w okolicy zera. Skale na ponizszych
+            wykresach s¹ logarytmiczne - wyniki w najbardziej dolnej czêœci wykresu to wyniki dobrze zbie¿ne (zbieznoœæ
+            kwadratowa). Cieka jest zachowanie siê funkcji powy¿ej liczby 15 - poniewa¿ funkcja jest tam ju¿ bardzo silnie rosn¹ca
+            a jej pierwsza pochodna szybko d¹¿y do nieskoñczonosci. Nie wszystkie metody by³y zawsze zbie¿ne - mimo ¿e wykres
+            funkcji nie zachowuje siê bardzo wyj¹tkwo. Wykresy mo¿na wraz z wynikami przegl¹dn¹æ w pliku: \emph{Graphs\_eq1.xls },
+            poni¿ej zamieœci³em 3 najciekawsze - w kolejnoœci wyników uzyskanych przy pomocy Metody Newtona, Olver'a i Stycznych.
+            .\\
+            \includegraphics[height=150px]{../Obrazki/new1.jpg} \includegraphics[height=150px]{../Obrazki/olv1.jpg}\\
+
+            \includegraphics[height=150px]{../Obrazki/tan1.jpg}\\
+
+            \indent Mo¿na siê tutaj pokusiæ o ocenê zbie¿noœci - Metoda Newtona miejscami daje dobry wynik po 5,6
+            krokach co jest zbie¿noœci¹ kwadratow¹ - podobnie zachowuje siê Metoda Olver'a - chocia¿ widaæ ¿e rzadziej
+            tak jest. Oczywiœcie metoda stycznych jest zbie¿na liniowo - widaæ ¿e zawsze jest to oko³o 55 kroków - co
+            czyni j¹ bardzo bezpieczn¹ - oczywiœcie trzeba wzi¹æ odpowiednio szeroki przedzia³ pocz¹tkowy.
+        \newpage
+        \subsubsection{Równanie 2}
+            \indent Drugie równanie nieliniowe to wielomian stopnia czwartego o równaniu:
+                \begin{equation}
+                1/4 x^4 - 1/90 x^3 - 20 x^2 + 3x + 2, \label{eq2}
+            \end{equation} \\[12pt]
+            \includegraphics[height=240px]{../Obrazki/polynom.jpg}
+
+            \indent Taki oto niepozorny wielomian bardzo rzadko dawa³ zbie¿ne serie wyników - badany by³ podobnie jak powy¿ej
+            przedzia³ $(-1000,1000)$ z wiêksz¹ gêstoœci¹ w okolicach zera. Na powiekszeniu widaæ, ¿e wielomian nie przechodzi przez
+            pocz¹tek uk³adu wspó³rzêdnych - proszê zwróciæ uwagê na skalê przy osiach.\\
+            \indent Zamieszczam te¿ podobnie jak poprzednie wykresy - tym razem wybra³em metodê Newtona i Now¹ Metodê. Dla
+            ciekawych dok³adnych wyników do³¹czam plik \emph{Graphs\_eq3.xls},
+
+            \includegraphics[height=150px]{../Obrazki/new3.jpg}\\
+
+            \includegraphics[height=150px]{../Obrazki/nm3.jpg}\\
+
+            \indent Obserwujemy tutaj dwa rodzaje zjawisk. Pierwszy z nich jest zbie¿noœæ w przedziale ci¹g³ym - dla Metody Newtona
+            jest to przedzia³ $(5,10)$ a dla Nowej Metody bêdzie to przedzia³ $(0.3,9)$. Drugie zjawisko - to zbie¿noœæ dla jednego
+            punktu - w nastêpnym poddziale bêdê chcia³ poruszyæ jeszcze ten temat. Zauwa¿my, ¿e o ile poprzednio ¿¹dan¹
+            dok³adnoœæ mogliœmy otrzymaæ nawet po 7,8 iteracjach - tak teraz jest to liczba o rz¹d wiêksza - oko³o 100
+            iteracji jest potrzebnych by Metoda da³a wynik z maksymaln¹ dok³adnoœci¹. Dok³adne dane w pliku.
+
+        \subsubsection{Z³o¿enie metod na przyk³adzie równania 1}
+            \indent Jako ostatnie w tej czêœci chcia³em przedstawiæ wyniki ze z³o¿enia metod Newtona i Metody Nowej. Jak pamiêtamy
+            - serie dla ujemych danych pocz¹tkowych by³y na ogóle zbie¿ne, zw³aszcza dla $x_0 < - 10$. Tymczasem ciekawymi okazuj¹
+            siê wyniki serii z³o¿onych.
+
+            \includegraphics[height=180px]{../Obrazki/new_mn1.JPG}\\
+
+            \indent W³aœciwie mo¿na by powiedzieæ - mo¿emy siê cieszyæ ¿e w ogóle dla jakichœ danych
+            Metoda z³o¿ona siê zbieg³a - na 1000 danych tak przy z³o¿eniu
+            Newton(Nowa) - wykres niebieski, jak i
+            Nowa(Newton) - wykres ró¿owy,
+            zaledwie kilka punktów nie le¿y na górnej krawêdzi wykresu.
+            Co natomiast jest optymistyczne - je¿eli ju¿ dobrze okreœliliœmy punkt pocz¹tkowy - metoda dawa³a bardzo
+            zbie¿ne serie 3 razy po 1 kroku otrzymywaliœmy maksymaln¹ dok³adnoœæ. To i poprzednie doœwiadczenie
+            sk³oni³o mnie do przejœcia i napisania równie¿ drugiej czêœci tego sprawozdania - w której to
+            zwiêkszy³em dok³adnoœæ a tak¿e zamierzy³em sobie niejako "pod lupê" wzi¹æ te liczby pocz¹tkowe, które daj¹
+            zbie¿ne serie tak dla Metod pojedynczych jak i z³o¿onych.\\
+
+            \indent Wœród za³¹czonych plików znajdziemy te¿ wyniki dla z³o¿enia funkcji $tg(x)^2$ i $ln(x)$ ale
+            tam zbie¿noœæ by³a najgorsza i z³o¿onoœæ obliczeniowa dosyæ spora.
+
+
+
+
+
+    \subsection{Serie z wiêksz¹ dok³adnoœci¹ (60 cyfr znacz¹cych)}
+
+    \indent Ta czêœæ zajê³a mi niew¹tpliwie najwiêksz¹ iloœæ czasu - Java i typ BigDecimal, który by³ dla mnie
+    ca³kowicie nowym pojêciem da³y siê we znaki. W za³¹czonym kodzie Ÿród³owym widaæ implementacjê funkcji takich
+    jak pierwiastek, eksponenta czy funkcje trygonometryczne - d³ugoœæ s³owa ustawiona jest na 60 cyfr znacz¹cych -
+    uda³o siê wyprodukowaæ kilka wyników tak dok³adnych. Niestety nie zd¹¿y³em ju¿ przedstawiæ tych wyników w formie
+    wykresów.
+
+    Oczywiœcie najciekawsze jest doœwiadczenie z³o¿enia. U¿y³em równania \ref{eq2} z wielomianem czwartego stopnia.
+    Gdy jeszcze raz przypatrzymy siê jego rysunkowi - niebieskim kolorem zaznaczy³em 2 kó³ka oznaczaj¹ce badane
+    przedzia³y - s¹ to $(-3.9,-3.26)$ oraz $(3.8,4.24)$. Te przedzia³y potraktowa³em krokiem rzêdu $10^{-4}$
+
+    \indent Gdy Metoda Newtona dawa³a zbie¿ne serie wyniki wygl¹da³y tak:\\
+    {\tt We started with -3.450999999999999901835467941424440141393} \\\\
+    {\tt 3.544277538590705868987776583823887226430} \\
+    {\tt 2.888839064408389484375704613405854026279} \\
+    {\tt 2.346358592039653227679097391710971819997} \\
+    {\tt 0.1889102394871439683434709405073749214126} \\
+    {\tt 0.04378715551382955772022710132975165424864} \\
+    {\tt 0.002571094195787265703928514686519619991855} \\
+    {\tt 0.000004876099017629758545441658836088340089980} \\
+    {\tt 2.799421854991606047866886296445486565254E-8} \\
+    {\tt 1.605129111515228863108931044589028243574E-10} \\
+    {\tt 9.203537322401268617593434622224711518913E-13} \\
+    {\tt 5.277151543553992710896472327229678905420E-15} \\
+    {\tt 3.025828813945669674428356501845647974165E-17} \\
+    {\tt 1.734958705606012400203474929640917672304E-19} \\
+    {\tt 9.94795771751865349543350861939711175258E-22} \\
+    {\tt 5.703989520313801928695417797640561181E-24} \\
+    {\tt 3.2705704398555781922560564142544992E-26} \\
+    {\tt 1.87528938543152175766918550673169E-28} \\
+    {\tt 1.075258993433397941405584735746E-30} \\
+    {\tt 6.165351928835003602272933608E-33} \\
+    {\tt 3.5351077869170088352891500E-35} \\
+    {\tt 2.02697059460199953010207E-37} \\
+    {\tt 1.162230415317641453977E-39} \\
+    {\tt 6.664031248833415363E-42} \\
+    {\tt Loop\\ stopped after 22 steps     OK} \\[6pt]
+    Ÿród³o = ".. \slash Newton\slash 3 +-\slash result.fin"\\[4pt]
+
+    \newpage
+    Po kolejnych ³adnych kilku godzinach spêdzonych miêdzy innymi przy optymalizowaniu kodu -
+    program wyprodukowa³ ju¿ bez b³êdów i w krótkim czasie wyniki z³o¿enia. Efekt uda³o siê otrzymaæ g³ównie przez dodanie tablicy hashuj¹cych,
+    które pamiêta³y wyniki tak w przypadku funkcji silnia jak i
+    pozosta³ych funkcji trygonometrycznych.(polecam zajrzeæ do kodu - {\tt Precise.java} i wyszukaæ metodê: \\[6pt]
+    {\tt public BigDecimal Sinus(BigDecimal argument) }
+     W przypadku z³o¿enia - punkty w których metoda "trafia³a" wystêpowa³y œrednio 2 razy rzadziej ni¿ w
+    przypadku pojedynczych metod - Ÿród³o = "...\slash Logs\slash Olver\slash data.fin". Jednak co jest pocieszaj¹ce
+    to fakt, ¿e z³o¿enie jest du¿o silniej zbie¿ne (obserwujemy kolejne wartoœci przybli¿enia):
+
+    {\tt We started with -3.569000000000000164500357779928663148858} \\
+    {\tt 3.969457927254087692659064306050057644199} \\
+    {\tt 0.00003644156336669637045068976677445497407864} \\
+    {\tt 1.209584323294279121554316133666966115967E-9} \\
+    {\tt 3.976727791891470551539535956903514724394E-14} \\
+    {\tt 1.307420953422869926442312350126598394059E-18} \\
+    {\tt 4.2983820841763832039675034970631212638E-23} \\
+    {\tt 1.413170600730966564290673172018915E-27} \\
+    {\tt 4.6460531140822899995652781063E-32} \\
+    {\tt 1.527473719571325800655344E-36} \\
+    {\tt 5.0218452236569426532E-41} \\
+    {\tt Loop stopped after 9 steps     OK } \\
+
+    Wnioski spróbujê wyci¹gn¹æ poni¿ej.

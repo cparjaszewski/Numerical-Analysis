@@ -1,0 +1,111 @@
+\documentclass[a4paper,9pt,titlepage]{article}
+
+% Deklaracja u¿ywanych pakietów
+
+    \usepackage{latexsym}
+    \usepackage[MeX]{polski}
+    \usepackage[cp1250]{inputenc}
+    \usepackage{amsmath,amssymb}
+    \usepackage{bbm}
+    \usepackage{amsthm}
+    \usepackage{graphicx}
+
+% Ustawienia tytu³u, makr i rozk³adu strony
+
+    \title{Pracownia Analizy Numerycznej\\ lista nr 3, zadanie nr 5\\[8pt]
+    \normalsize{Wyznaczanie wspó³czynników kwadratury interpolacyjnej.}
+    \author{Krzysztof Parjaszewski\\[4pt] \small{nr indeksu 209190}}
+    \\[30pt]\date{Wroc³aw, \today}}
+    \frenchspacing % nie pamiêtam ju¿ co to by³o frenchspacing
+    \newtheorem{twr}{Twierdzenie}
+
+    \addtolength{\hoffset}{-2cm}
+    \addtolength{\textwidth}{3.5cm}
+\begin{document}
+
+% Wstawienie autora i tytu³u do sk³adu:
+
+\maketitle
+\newpage
+
+% Wstawienie spisu tresci:
+
+\tableofcontents
+\newpage
+
+% Pozwoli³em sobie z³amaæ tutaj stronê
+
+
+\section{Treœæ zadania}
+    \indent Dla danego $n$ i danych wêz³ów $x_0, x_1,\dots ,x_n$ wyznaczyæ wspó³czynniki kwadratury interpolacyjnej: \\[6pt]
+    \begin{displaymath}
+        \int_{-1}^{1} f(x)\,dx \approx \sum_{k=0}^n A_k f(x_k)  \label{eq:todo}
+    \end{displaymath} \\[6pt]
+    \indent stosujac wzór: \\[6pt]
+    \begin{displaymath}
+        A_k = \frac{1}{w'(x)} \int_{-1}^{1} \frac{w(x)}{x-x_k}\,dx, \ \ \ \ \ w(x) = (x-x_0)(x-x_1)\dots (x-x_n). \label{eq:equation}
+    \end{displaymath} \\[6pt]
+    \indent Rozwa¿yæ (a) wêz³y równoodleg³e, (b) wêz³y bêd¹ce zerami ($n+1$)-go wielomianu Czebyszewa, (c) punkty ektremalne $n$-tego wielomianu Czebyszewa. Wykonaæ obliczenia kontrolne \textbf{miêdzy innymi} dla funkcji podca³kowych:\\[6pt]
+    \begin{displaymath}
+        f_1(x) = \frac{1}{x^4 + x^2 + 0.9},  \ \ \ f_2(x) = \frac{2\pi(1+x)}{(1-x)(3+x)}sin \pi (1+x)  \label{eq:fuctions}
+    \end{displaymath} \\[6pt]
+
+
+\section{Dygresje na temat, jak tego zadania \textbf{nie} nale¿y robiæ}
+    \indent W zadaniu nale¿a³o zauwa¿yæ kilka rzeczy, które pocz¹tkuj¹cemu studentowi mog¹ nie wydawaæ siê oczywiste, jednak
+    tak jak by³o miêdzy innymi w moim przypaku pozwoli³o to dojœæ do póŸniejszym poprawnych przemyœleñ. Otó¿ zauwa¿my dwie istotne rzeczy. Po piewsze wyliczenie wspó³czynników tej kwadratury w ¿adnym przypadku nie zale¿y od wybranej funkcji,
+    mo¿na sobie wiêc zadanie podzieliæ na dwa etapy, z których pierwszy - implementacja algorytmu znajduj¹cego wspomniane wspó³czynniki wykonywana jest raz dla wszystkich póŸniejszych funkcji. Oczywiœcie drugi etap to obliczanie wartoœci funkcji dla których chcemy obliczyæ przybli¿on¹ ca³kê oraz porównanie wyników: \\[6pt]
+    \indent Natrafi³em wobec tego na b³êdne podejœcie, które niestety zajê³o mi niepotrzebnie du¿o czasu. W wypadku wyra¿enia:
+    \begin{displaymath}
+        A_k = \frac{1}{w'(x)} \int_{-1}^{1} \frac{w(x)}{x-x_k}\,dx, \label{eq:factor}
+    \end{displaymath} \\[6pt]
+    Stara³em siê uproœciæ zadanie obliczania ca³ki metod¹ trapezów jest zaimplementowana funkcja:\\[6pt]
+    {\tt{\scriptsize{}private BigDecimal pl.wroc.uni.zmn.Quadratic.java.TrapeziumLagrangeCalculus(ArrayList$<$BigDecimal$>$ pointsArray) throws IOException.}}\\[6pt]
+    \indent Jednym s³owem ca³kê chcia³em uproœciæ niedoskona³ym narzêdziemi, co przynios³o nieoczekiwane skutki, szczegó³y znajduj¹ siê w pliku:\\[6pt]
+    {\tt \\Data\\wrongway.txt}\\[6pt]
+
+    Krótko mówi¹c, dla stosunkowo ma³ej iloœci równoodleg³ych wêz³ów suma wspo³czynników, która powinna byæ zbie¿na do 2 zaczê³a wyk³adniczo uciekaæ do nieskoñczonoœci. Przyk³adowo dla piêci wêz³ów suma ta jeszcze wynosi³a: $1.9238$,    dla 9 wêz³ów: $3.080437$, dla 30 wêz³ów: $ 234530$.\\[6pt]
+    Oczywiœcie na taki b³¹d nie mog³em sobie pozwoliæ co sk³oni³o mnie jeszcze raz do zastanowienia siê nad u³atwieniem
+    i mo¿liwie najlepszym wyra¿eniem obliczania wyra¿enia podca³kowego.
+
+\section{Kluczem do wszystkiego - matematyka}
+    \indent Odrobina beletrystyki nie zaszkodzi, w koñcu tak ma³o humanistycznych przedmiotów na tym wydziale$\dots$. Takim oto sposobem trafi³em nie raz do Wroc³awskiej biblioteki w poszukiwaniu jakiegoœ sprytnego rozwi¹zania. Zdecydowanie o to chodzi w pracowni, ¿eby student który ma braki uczciwie siê do tego przyzna³ i postara³ siê mo¿liwie skutecznie je ponadrabiaæ, do egzaminu ju¿ nie tak bardzo daleko. Warto powiedzieæ tutaj o upraszczaniu siê wzorów. Mianowicie ca³ka, która do tego pory zniechêca³a z racji tego, ¿e przy kolejnych potêgach zmiennej podca³kowej sta³y u³amki nieraz bardzo niewdziêczne. Gdy jeszcze raz spojrzymy na wyra¿enie:\\[6pt]
+    \begin{displaymath}
+        \int_{-1}^{1} \frac{w(x)}{(x-x_k)},dx \\[6pt]
+    \end{displaymath} \\[6pt]
+    Zauwa¿ymy uderzaj¹ce podobieñstwo w porównaniu do wielomianu u¿ywanego przez nas kilka tygodni temu przy okazji Zadania interpolacyjnego Lagrange'a. Wielomian ten mia³ postaæ:\\[6pt]
+    \begin{displaymath}
+        L_n(x) := \sum_{k=0}^n f(x_k)\lambda_k(x), \\[6pt]
+    \end{displaymath} \\[6pt]
+    gdzie
+   \begin{displaymath}
+        \lambda_k := \prod_{j=0,j\ne k}^n \frac{x - x_j}{x_k - x_j}\ \ \ \ \ \  (k = 0, 1, \dots, n).
+    \end{displaymath} \\[6pt]
+    Dowodzi siê, ¿e wspo³czynnik $A_k$, który w tym zadaniu mamy obliczyæ, przy wczeœniejszych oznaczeniu $h = (2/n)$, oblicza siê z wzoru:
+   \begin{displaymath}
+        A_k := h (-1)^{n-k} \frac{1}{n!(n-k)!}\int_{0}^{n} \prod_{j=0,j\ne k}^{n}(t-j)\,dt \ \ \ \ \ \ (k = 0, 1, \dots, n), \label{eq:goodway}
+    \end{displaymath} \\[6pt]
+    W tym wzorze najwa¿niejsze jest ten zysk, ¿e pod ca³k¹ mamy wy³¹cznie liczby ca³kowite, co ju¿ mo¿na szybko obliczyæ.
+    \subsection{Matematyka Czebyszewa}
+    Niestety uda³o mi siê rozwi¹zaæ tylko tê czêœc zadania, w której wêz³y by³y równoodleg³e. Dla wez³ów/estremów wielomianu Czebyszewa 
+    nie dotar³em do uproszczonego wzoru kwadratury, w którym funkcja wagowa $p(x)$ by³aby równa $1$. Trochê zabrak³o mi czasu, chocia¿ paradoksalnie przy tej pracowni poœwiêci³em go jak do tej pory najwiêcej. Dotar³em natomiast do wzoru:\\[6pt]
+    \begin{displaymath}
+        Q(f) := \frac{\pi}{n+1}\sum_{k=0}^{n} f (cos(\frac{2k+1}{2n+2} \pi)).\label{eq:tsch}
+    \end{displaymath} \\[6pt]
+    Z t¹ jednak uwag¹, ¿e dla tak okreœlonej kwadratury funkcja wagowa ma postaæ:
+    \begin{displaymath}
+        p(x)=\frac{1}{\sqrt{(1-x^2}}.\label{eq:vage}
+    \end{displaymath} \\[6pt]
+    Jako ¿e nie znalaz³em sposobu przerobienia tej funckji wagowej na funkcjê to¿samoœciowo równ¹ 1, przejdê tylko do omówienia wyników dla kwadratury w przypadku wêz³ów równoodleg³ych.
+\section{Wyniki}
+    Czas powiedzieæ o wynikach. Przy zastosowaniu zfaktoryzowanego wzoru do obliczania wartoœci wielomianu potrafiê obliczyæ wartoœæ ca³ki z dowoln¹ dok³adnoœci¹. W pierwszej czêœci wyliczy³em wspó³czynniki A_k dla ró¿nej iloœci wêz³ów. Uwaga jest taka, ¿e aby policzyæ dok³adn¹ wartoœæ ca³ki dla n > 20 program wykonuje siê powy¿ej 1 minuty i wydaje siê, ¿e czas ten ucieka wyk³adniczo. Chodzi o to, ¿e wyliczam za pomoc¹ funkcji:\\[6pt]
+    {\tt{\scriptsize{private BigDecimal GetFactor(int counter, int k, int start, int size) throws IOException.}}}\\[6pt]
+    wyznaczniki przy kolejnych potêgach zmiennej podca³kowej $t$. Dla ma³ych $n$ jest ich niewiele wobec czego program nie pracuje przesadnie d³ugo. Ale ju¿ przy liczbie punktów równej 15 czy 20 da³o siê odczuæ - np. po up³ywaj¹cym czasie, lub po wykresie obci¹¿enia procesora, ¿e wykonywana jest bardzo du¿a iloœæ obliczeñ - niestety nie do unikniêcia - dosyæ wspomnieæ ¿e przy $n = 20$ "œrodkowe" wspó³czynniki s¹ rzêdu du¿o wy¿szego ni¿ $10^6$. Jednak wyniki dla ma³ej iloœci wêz³ów w zupe³noœci nam wystarcz¹. Dla ciekawych za³¹czam plik:\\[6pt]
+    {\tt \\Data\\Factors.xls}\\[6pt]
+    - mo¿na w nim znaleŸæ wyniki dla ró¿nej iloœci punktów, wraz z wykresami rozk³adu wartoœci wyliczonych wspó³czynników $A_k$.
+     
+    	
+
+\section{Analiza i wnioski}
+    todo.
+\end{document}

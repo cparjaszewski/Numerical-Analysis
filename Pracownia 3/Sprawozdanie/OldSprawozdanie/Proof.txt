@@ -1,0 +1,24 @@
+\indent Przedstawione metody s¹ jednopunktowe - co znaczy ¿e do obliczenia $x_{i+1}$ wystarczy znajomoœæ
+    poprzedniego przybli¿enia. Prawdziwe jest zatem twierdzenie:\\
+    \\
+    \begin{twr}[Dyzma]
+        Rz¹d ka¿dej jednopunktowej funkcji iteracyjnej $F(x)$ jest liczb¹ naturaln¹. Dok³adniej, funkcja $F(x)$ ma rz¹d $p$
+        wtedy i tylko wtedy, gdy $F^{(j)}(a) = 0$ dla $1 \le j < p$ i $F^{p}(\xi)\ne 0$
+    \end{twr}
+    \begin{proof}
+        Rozwijamy $F(x_{i})$ w otoczeniu punktu a wed³ug wzoru Taylora:
+        \begin{equation}
+            F(x_{i}) = a + (x_{i} - a)F'(a) + \dots + \frac{(x_{i} - a)^{p-i}}{(p-1)!}F^{(p-1)}(a) + \frac{(x_{i} - a)^{p}}{p!}F^{(p)}(\xi) = a + \frac{(x_{i} - a)^p}{p!}F^{(p)}(\xi).  \label{taylor}
+        \end{equation} \\[6pt]
+        gdzie $\xi$ le¿y miêdzy $x_{i}$ i a. Poniewa¿ $F(x_{i}) = x_{i+1}$, wiêc
+        \begin{displaymath}
+            x_{i+1} - a = \frac{(x-a)^p}{p!}F^{(p)}(\xi)
+        \end{displaymath} \\[6pt]
+        Zatem
+        \begin{equation}
+            \lim_{n \to \infty}\frac{|x_{i+1} - a|^p}{|x_{i}-a|} = \frac{1}{p!}|F^p(a)| \ne 0, \label{limes}
+        \end{equation} \\[6pt]
+        jeœli iteracje s¹ zbie¿ne; dowodzi to pierwszej czêœci twierdzenia. Z drugiej strony, z \ref{taylor} i
+        \ref{limes} ³atwo wynika, ¿e jeœli $F^{(j)}(a) \ne 0$ dla pewnego $j$, zawartego miêdzy 0 i p lub jeœli
+        $F^{(p)}(a) = 0$, to $F(x)$ nie mo¿e byæ funkcj¹ rzêdu $p$.
+    \end{proof}
